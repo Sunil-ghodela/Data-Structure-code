@@ -15,8 +15,8 @@ def maxProfitAaja(stockList):
         stockBuy = stockList[start] # // logic-1st
     else:
       if start+1 <= len(stockList): # // logic-2nd
-        if stockList[start] > stockList[start-1]: # // logic-3nd
-          if start == len(stockList)-1:# // logic-4rd
+        if stockList[start] > stockList[start-1]: # // logic-3rd
+          if start == len(stockList)-1:# // logic-4th
             stockProfitList.append({stockBuy: stockList[start]})
         else:
           stockProfitList.append({ stockBuy: stockList[start-1]})
