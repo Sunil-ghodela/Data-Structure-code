@@ -1,4 +1,4 @@
-stockArray = [100, 180, 200, 310, 40, 535, 695, 200]
+stockArray = [100, 180, 1000, 20000, 310, 40, 5350, 695, 200]
 
 def maxProfitAaja(stockList):
 
@@ -6,23 +6,30 @@ def maxProfitAaja(stockList):
   stockProfitList = []
   stockBuy = None
 
+  tempStockDiff = 0
+
   while(start < len(stockList)):
-    tempStockDiff = 0
 
     if stockBuy == None:
       if start+1 < len(stockList):
         if stockList[start] > stockList[start+1]:
           stockBuy = stockList[start+1]
     else:
-      if start+1 <= len(stockList):
-        if start+1 == len(stockList):
-          stockProfitList.append({ 'stock buy'+ str(stockBuy): 'stock sell' + str(stockList[start])})
+        if start+1 < len(stockList):
+            if stockList[start] < stockList[start+1]:
+                if tempStockDiff < stockList[start+1] - stockList[start]:
+                    tempStockDiff = stockList[start+1] - stockList[start]
+                    stockProfitList = {stockBuy: stockList[start+1]}
         else:
-          if stockList[start] < stockList[start+1]:
-            tempStockDiff = stockList[start] - stockList[start-1]
-          else:
-            stockProfitList.append({ 'stock buy'+ str(stockBuy): 'stock sell' + str(stockList[start])})
-            break
+            # tempStockDiff = stockList[start+1] - stockList[start]
+
+
+            if stockList[start-1] < stockList[start]:
+                if tempStockDiff < stockList[start] - stockList[start-1]:
+                    stockProfitList = {stockBuy: stockList[start]}
+                else:
+                    stockProfitList = {stockBuy: tempStockDiff+stockBuy}
+
     start += 1
   
   return stockProfitList
