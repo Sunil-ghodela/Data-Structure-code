@@ -1,4 +1,4 @@
-stockArray = [100, 180, 1000, 100, 200, 310, 400, 5350, 695, 10]
+stockArray = [100, 180, 1000, 100, 200, 310, 40, 535, 695, 10]
 
 
 def maxProfitAaja(stockList):
