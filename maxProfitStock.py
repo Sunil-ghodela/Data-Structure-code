@@ -8,15 +8,16 @@ def maxProfitAaja(stockList):
 
     tempStockDiff = 0
 
-    while(start < len(stockList)):
+    while(start < len(stockList)): # first time entry for array
         k = start+1
-        while(k < len(stockList)-1):
+        while(k < len(stockList)-1): # will check all posiblity to purchase with update max diff
             if stockList[k] - stockList[start] > tempStockDiff:
                 tempStockDiff = stockList[k] - stockList[start]
                 stockProfitList[stockList[start]] = stockList[k] - stockList[start]
                 
             k += 1
-
+        
+        # checking last max. score if any then updating it 
         for temp in range(len(stockList)):
             if stockList[temp] in stockProfitList:
                 if stockProfitList[stockList[temp]] < tempStockDiff:
