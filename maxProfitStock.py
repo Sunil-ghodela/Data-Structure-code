@@ -1,38 +1,33 @@
-stockArray = [100, 180, 1000, 20000, 310, 40, 5350, 695, 200]
+stockArray = [100, 180, 1000, 100, 200, 310, 400, 5350, 695, 10]
 
 def maxProfitAaja(stockList):
 
-  start = 0
-  stockProfitList = []
-  stockBuy = None
+    start = 0
+    stockProfitList = {}
 
-  tempStockDiff = 0
+    tempStockDiff = 0
 
-  while(start < len(stockList)):
+    while(start < len(stockList)):
+        k = start+1
+        while(k < len(stockList)-1):
+            if stockList[k] - stockList[start] > tempStockDiff:
+                tempStockDiff = stockList[k] - stockList[start]
+                stockProfitList[stockList[start]] = stockList[k] - stockList[start]
+                
+            k += 1
 
-    if stockBuy == None:
-      if start+1 < len(stockList):
-        if stockList[start] > stockList[start+1]:
-          stockBuy = stockList[start+1]
-    else:
-        if start+1 < len(stockList):
-            if stockList[start] < stockList[start+1]:
-                if tempStockDiff < stockList[start+1] - stockList[start]:
-                    tempStockDiff = stockList[start+1] - stockList[start]
-                    stockProfitList = {stockBuy: stockList[start+1]}
-        else:
-            # tempStockDiff = stockList[start+1] - stockList[start]
+        for temp in range(len(stockList)):
+            if stockList[temp] in stockProfitList:
+                if stockProfitList[stockList[temp]] < tempStockDiff:
+                    del stockProfitList[stockList[temp]]
+                    stockProfitList[stockList[start]] = tempStockDiff
 
+        start += 1
 
-            if stockList[start-1] < stockList[start]:
-                if tempStockDiff < stockList[start] - stockList[start-1]:
-                    stockProfitList = {stockBuy: stockList[start]}
-                else:
-                    stockProfitList = {stockBuy: tempStockDiff+stockBuy}
+     
+    stockProfitList[stockProfitList.keys()[0]] = stockProfitList.keys()[0] + stockProfitList[stockProfitList.keys()[0]]
 
-    start += 1
-  
-  return stockProfitList
+    return stockProfitList
 
 profitList = maxProfitAaja(stockArray)
 print(profitList)
