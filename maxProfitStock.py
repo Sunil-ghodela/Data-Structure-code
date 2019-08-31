@@ -1,5 +1,6 @@
 stockArray = [100, 180, 1000, 100, 200, 310, 400, 5350, 695, 10]
 
+
 def maxProfitAaja(stockList):
 
     start = 0
