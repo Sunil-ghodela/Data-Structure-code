@@ -1,5 +1,5 @@
 # InOrder Traverse in A Tree
-#  Left---> Root----> Right
+#  Root---> Left----> Right
 
 class Node: 
     def __init__(self,key): 
@@ -13,9 +13,11 @@ def printInorder(root):
     #         1
     #       2-----3
     #     4---5
-    if root: 
-        printInorder(root.left) 
+    if root:
         print(root.val)
+
+        printInorder(root.left)
+        
         printInorder(root.right) 
   
 root = Node(1) 
@@ -25,5 +27,5 @@ root.left.left  = Node(4)
 root.left.right  = Node(5)
 
 printInorder(root)
-# output: [4 2 5 1 3]
+# output: [1 2 4 5 3]
 
