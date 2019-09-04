@@ -1,6 +1,6 @@
 # stockArray = [100, 1, 1000, 100, 200, 310, 40, 535, 6, 10000]
-# stockArray = [100, 6, 1000, 100, 200, 310, 40, 100, 535, 10, 10000]
-stockArray = [100, 1, 1000, 100, 200, 310, 40, 100, 535, 6000, 10000]
+stockArray = [100, 6, 1000, 100, 200, 310, 40, 100, 535, 10, 10000]
+# stockArray = [100, 1, 1000, 100, 200, 310, 40, 100, 535, 60, 10000]
 
 
 def maxProfitAaja(stockList):
@@ -11,15 +11,11 @@ def maxProfitAaja(stockList):
     tempStockDiff = 0
 
     while(start < len(stockList)):  # first time entry for array
+        if start+1 <= len(stockList)-1:
+            if stockList[start+1] - stockList[start] > tempStockDiff:
+                tempStockDiff = stockList[start+1] - stockList[start]
+                stockProfitList[stockList[start]] = stockList[start+1] - stockList[start]
 
-        k = start+1
-        while(k <= len(stockList)-1):  # will check all posiblity to purchase with update max diff
-            if stockList[k] - stockList[start] > tempStockDiff:
-                tempStockDiff = stockList[k] - stockList[start]
-                stockProfitList[stockList[start]
-                                ] = stockList[k] - stockList[start]
-
-            k += 1
 
         # checking last max. score if any then updating it
         for temp in range(len(stockList)):
